@@ -1,0 +1,705 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Loops API",
+    "description" : "Loops API endpoints",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/Loops-Dev/Loops-Dev/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  } ],
+  "security" : [ {
+    "bearerAuth" : [ ]
+  } ],
+  "tags" : [ {
+    "name" : "customers",
+    "description" : "operation available to all users"
+  } ],
+  "paths" : {
+    "/customers/{customerId}" : {
+      "get" : {
+        "tags" : [ "customers" ],
+        "summary" : "searches for customer info based on customerId",
+        "description" : "By passing in a valid customerId, you can search for customer info in the loops backend\n",
+        "operationId" : "searchCustomer",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "path",
+          "description" : "pass the required customer id",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Customer"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "UNAUTHORIZED",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/401"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "NOT_FOUND",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/404"
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "UNKNOWN_ERROR",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sites" : {
+      "get" : {
+        "tags" : [ "sites" ],
+        "summary" : "searches for site info based on customerId or returns all sites for authenticated user",
+        "description" : "By passing in a valid customerId a superuser can return all matching sites, or for regular users it will return the sites which match their authenticated JWT customer ID\n",
+        "operationId" : "searchSites",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "pass the customer id (only for superusers)",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Sites"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "UNAUTHORIZED",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/401"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "NOT_FOUND",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/404"
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "UNKNOWN_ERROR",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets" : {
+      "get" : {
+        "tags" : [ "assets" ],
+        "summary" : "searches for asset info based on customerId or returns all assets for authenticated user",
+        "description" : "By passing in a valid customerId a superuser can return all matching assets, or for regular users it will return the assets which match their authenticated JWT customer ID\n",
+        "operationId" : "searchAssets",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "pass the customer id (only for superusers)",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Assets"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "UNAUTHORIZED",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/401"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "NOT_FOUND",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/404"
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "UNKNOWN_ERROR",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/equipment" : {
+      "get" : {
+        "tags" : [ "equipment" ],
+        "summary" : "searches for equipment info based on customerId or returns all equipment for authenticated user",
+        "description" : "By passing in a valid customerId a superuser can return all matching equipment, or for regular users it will return the equipment which match their authenticated JWT customer ID\n",
+        "operationId" : "searchEquipment",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "pass the customer id (only for superusers)",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Equipment"
+                  }
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "UNAUTHORIZED",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/401"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "NOT_FOUND",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/404"
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "UNKNOWN_ERROR",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events" : {
+      "get" : {
+        "tags" : [ "events" ],
+        "summary" : "searches for events based on customerId or returns all events for authenticated user",
+        "description" : "By passing in a valid customerId a superuser can return all matching events, or for regular users it will return the events which match their authenticated JWT customer ID\n",
+        "operationId" : "searchEvents",
+        "parameters" : [ {
+          "name" : "customerId",
+          "in" : "query",
+          "description" : "pass the customer id (only for superusers)",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Events"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "UNAUTHORIZED",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/401"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "NOT_FOUND",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/404"
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "UNKNOWN_ERROR",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events/{eventId}" : {
+      "put" : {
+        "tags" : [ "events" ],
+        "summary" : "updates a specified event",
+        "operationId" : "updateEvent",
+        "parameters" : [ {
+          "name" : "eventId",
+          "in" : "path",
+          "description" : "pass the event ID to update",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "description" : "The event details that you would like to update",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Event"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Event"
+                }
+              }
+            }
+          },
+          "401" : {
+            "description" : "UNAUTHORIZED",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/401"
+                  }
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "NOT_FOUND",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/404"
+                  }
+                }
+              }
+            }
+          },
+          "500" : {
+            "description" : "UNKNOWN_ERROR",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/500"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "401" : {
+        "type" : "object",
+        "properties" : {
+          "error_code" : {
+            "type" : "string",
+            "example" : "UNAUTHORIZED"
+          },
+          "error_message" : {
+            "type" : "string",
+            "example" : "Invalid or missing Authorization header"
+          }
+        }
+      },
+      "404" : {
+        "type" : "object",
+        "properties" : {
+          "error_code" : {
+            "type" : "string",
+            "example" : "NOT_FOUND"
+          },
+          "error_message" : {
+            "type" : "string",
+            "example" : "Resource not found"
+          }
+        }
+      },
+      "500" : {
+        "type" : "object",
+        "properties" : {
+          "error_code" : {
+            "type" : "string",
+            "example" : "UNKNOWN_ERROR"
+          },
+          "error_message" : {
+            "type" : "string",
+            "example" : "Example error string"
+          }
+        }
+      },
+      "Customer" : {
+        "required" : [ "customerId" ],
+        "type" : "object",
+        "properties" : {
+          "cId" : {
+            "type" : "string",
+            "example" : "11111"
+          },
+          "cName" : {
+            "type" : "string",
+            "example" : "KGHM"
+          },
+          "sectorName" : {
+            "type" : "string",
+            "example" : "Mining"
+          }
+        }
+      },
+      "Sites" : {
+        "type" : "object",
+        "properties" : {
+          "cId" : {
+            "type" : "string",
+            "example" : "11111"
+          },
+          "sName" : {
+            "type" : "string",
+            "example" : "FLEET"
+          },
+          "sId" : {
+            "type" : "string",
+            "example" : "S000001"
+          }
+        }
+      },
+      "Assets" : {
+        "type" : "object",
+        "properties" : {
+          "aId" : {
+            "type" : "string",
+            "example" : "8336"
+          },
+          "aName" : {
+            "type" : "string",
+            "example" : "ROYAL PRINCESS"
+          },
+          "sId" : {
+            "type" : "string",
+            "example" : "S000001"
+          }
+        }
+      },
+      "Equipment" : {
+        "type" : "object",
+        "properties" : {
+          "eId" : {
+            "type" : "string",
+            "example" : "723133"
+          },
+          "eName" : {
+            "type" : "string",
+            "example" : "No. 3"
+          },
+          "eType" : {
+            "type" : "string",
+            "example" : "DIESEL ENGINE"
+          },
+          "aId" : {
+            "type" : "string",
+            "example" : "8336"
+          }
+        }
+      },
+      "Events" : {
+        "type" : "object",
+        "properties" : {
+          "events" : {
+            "type" : "array",
+            "example" : [ {
+              "id" : "45787654567",
+              "type" : "alert",
+              "recommendationId" : "rec123456",
+              "triggerTimestamp" : 1571922000000,
+              "severity" : 3,
+              "location" : {
+                "site" : "4567321",
+                "asset" : "7654321",
+                "equipment" : "1234567"
+              }
+            }, {
+              "id" : "3456543456",
+              "type" : "alert",
+              "recommendationId" : "rec654321",
+              "triggerTimestamp" : 1571922000001,
+              "severity" : 2,
+              "location" : {
+                "site" : "123456",
+                "asset" : "456765",
+                "equipment" : "0987678"
+              }
+            }, {
+              "id" : "9876789876545678",
+              "type" : "alert",
+              "recommendationId" : "rec123456",
+              "triggerTimestamp" : 1571922000000,
+              "severity" : 3,
+              "location" : {
+                "site" : "4567321",
+                "asset" : "7654321",
+                "equipment" : "1234567"
+              }
+            }, {
+              "id" : "5678654345676543",
+              "type" : "update",
+              "recommendationId" : "rec654321",
+              "triggerTimestamp" : 1571922000001,
+              "severity" : 2,
+              "location" : {
+                "site" : "123456",
+                "asset" : "456765",
+                "equipment" : "0987678"
+              }
+            } ],
+            "items" : {
+              "$ref" : "#/components/schemas/Event"
+            }
+          }
+        }
+      },
+      "Event" : {
+        "type" : "object",
+        "properties" : {
+          "type" : {
+            "type" : "string",
+            "example" : "alert"
+          },
+          "recommendationId" : {
+            "type" : "string",
+            "example" : "rec123456"
+          },
+          "triggerTimestamp" : {
+            "type" : "number",
+            "example" : 1571922000000
+          },
+          "severity" : {
+            "type" : "number",
+            "example" : 3
+          },
+          "location" : {
+            "$ref" : "#/components/schemas/Event_location"
+          },
+          "history" : {
+            "$ref" : "#/components/schemas/EventHistory"
+          }
+        }
+      },
+      "EventHistory" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/EventHistory_inner"
+        }
+      },
+      "Event_location" : {
+        "type" : "object",
+        "properties" : {
+          "site" : {
+            "type" : "string",
+            "example" : "4567321"
+          },
+          "asset" : {
+            "type" : "string",
+            "example" : "7654321"
+          },
+          "equipment" : {
+            "type" : "string",
+            "example" : "1234567"
+          }
+        }
+      },
+      "EventHistory_inner" : {
+        "type" : "object",
+        "properties" : {
+          "user_id" : {
+            "type" : "string",
+            "example" : "4567321"
+          },
+          "event_action" : {
+            "type" : "string",
+            "example" : "dismiss"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "bearerAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      }
+    }
+  }
+}
